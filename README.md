@@ -54,23 +54,3 @@ adb shell /data/nativetest64/VtsHalRadarTest/VtsHalRadarTest
 ```
 
 NOTE: currently VTS tests stdour and strerr are redirected to logcat. It is easier to debug that way because one sees HAL logs interlaced with VTS logs.
-
-## Troubleshooting
-
-To check if the HAL is running:
-
-```bash
-adb shell service list | grep infineon
-```
-
-should return something like
-
-```
-242     vendor.infineon.radar.IRadarSdk/default: [vendor.infineon.radar.IRadarSdk]
-```
-
-Also, consider using `dumpsys`:
-
-```bash
-adb shell dumpsys vendor.infineon.radar.IRadarSdk/default
-```
