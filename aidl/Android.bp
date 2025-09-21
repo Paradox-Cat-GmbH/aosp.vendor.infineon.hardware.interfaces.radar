@@ -1,0 +1,22 @@
+aidl_interface {
+    name: "vendor.infineon.radar",
+    vendor_available: true,
+    srcs: [
+        "vendor/infineon/radar/*.aidl",
+    ],
+    stability: "vintf", // requires java platform_apis: true (https://stackoverflow.com/a/77568578/4524429)
+    backend: {
+        cpp: {
+            enabled: false, // https://source.android.com/docs/core/architecture/aidl/aidl-hals
+        },
+        ndk: {
+            enabled: true, // AIDL HAL's implementation (default/src/RadarHal.cpp) uses NDK backend
+        },
+        java: {
+            platform_apis: true, // otherwise with stability: "vintf" we get compilation error "method markVintfStability() not found"
+            enabled: true, // corresponding system service (packages/services/paradoxcat/infineon-radar-service) is written in Kotlin
+        },
+    },
+    owner: "paradoxcat",
+    frozen: false,
+}

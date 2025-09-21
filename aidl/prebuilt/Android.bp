@@ -1,0 +1,61 @@
+cc_prebuilt_library_shared {
+    name: "libsdk_avian",
+    srcs: ["libs/libsdk_avian.so"],
+    shared_libs: [
+        "liblib_avian",
+        "libsdk_base",
+        "libsdk_fmcw",
+        "libsdk_radar_device_common",
+        "libstrata_shared-d",
+    ],
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "liblib_avian",
+    srcs: ["libs/liblib_avian.so"],
+    shared_libs: ["libstrata_shared-d"],
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libsdk_base",
+    srcs: ["libs/libsdk_base.so"],
+    shared_libs: ["libstrata_shared-d"],
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libsdk_fmcw",
+    srcs: ["libs/libsdk_fmcw.so"],
+    shared_libs: [
+        "liblib_avian",
+        "libsdk_base",
+        "libsdk_radar_device_common",
+        "libstrata_shared-d",
+    ],
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libsdk_radar_device_common",
+    srcs: ["libs/libsdk_radar_device_common.so"],
+    shared_libs: [
+        "liblib_avian",
+        "libsdk_base",
+        "libstrata_shared-d",
+    ],
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libstrata_shared-d",
+    srcs: ["libs/libstrata_shared-d.so"],
+    export_include_dirs: ["include"],
+    vendor_available: true,
+}

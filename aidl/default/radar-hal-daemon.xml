@@ -1,0 +1,6 @@
+<manifest version="1.0" type="device">
+    <hal format="aidl">
+        <name>vendor.infineon.radar</name>
+        <fqname>IRadarSdk/default</fqname>
+    </hal>
+</manifest>

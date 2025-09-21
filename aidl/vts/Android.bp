@@ -1,0 +1,23 @@
+cc_test {
+    name: "VtsHalRadarTest",
+    disable_framework: true, // remove this if frameworks is needed
+    defaults: [
+        "VtsHalTargetTestDefaults",
+        "use_libaidlvintf_gtest_helper_static",
+    ],
+    srcs: [
+        "*.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+    ],
+    static_libs: [
+        "libgmock",
+        "vendor.infineon.radar-V1-ndk",
+    ],
+    test_suites: [
+        "general-tests",
+        "vts",
+    ],
+}

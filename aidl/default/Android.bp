@@ -1,0 +1,24 @@
+cc_binary {
+    name: "vendor.infineon.radar@1.0-service",
+    vendor: true,
+    relative_install_path: "hw",
+
+    srcs: [
+        "src/*.cpp",
+    ],
+
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "vendor.infineon.radar-V1-ndk",
+        "libsdk_avian",
+        "liblib_avian",
+        "libsdk_base",
+        "libsdk_fmcw",
+        "libsdk_radar_device_common",
+        "libstrata_shared-d",
+    ],
+
+    init_rc: ["radar-hal-daemon.rc"],
+    vintf_fragments: ["radar-hal-daemon.xml"],
+}

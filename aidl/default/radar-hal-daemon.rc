@@ -1,0 +1,9 @@
+# Using group "inet" for access to /tty/USB*, /tty/ACM*, and alike
+# Tried "dialout" group, but got this error during the build:
+# "Unable to decode GID for 'dialout': getpwnam failed: No such file or directory"
+
+service infineonradarservice /vendor/bin/hw/vendor.infineon.radar@1.0-service
+    class hal
+    user system
+    group inet system
+    capabilities NET_RAW

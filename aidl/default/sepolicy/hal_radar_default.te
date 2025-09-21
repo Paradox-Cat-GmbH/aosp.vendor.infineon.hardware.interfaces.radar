@@ -1,0 +1,35 @@
+# define domain
+type hal_radar_default, domain;
+
+# let init start the daemon in this domain
+type hal_radar_default_exec, exec_type, file_type, vendor_file_type;
+init_daemon_domain(hal_radar_default)
+
+# define hal_radar, hal_radar_client, hal_radar_server
+hal_attribute(radar)
+
+# let this domain serve the hal service
+hal_server_domain(hal_radar_default, hal_radar)
+
+# allow binder connection from this domain to server
+binder_call(hal_radar_default, hal_radar_server)
+
+# allow binder connection from shell and system_app to this domain
+binder_use(shell)
+binder_use(system_app)
+binder_call(shell, hal_radar_default)
+binder_call(system_app, hal_radar_default)
+
+# udp_socket and raw sockets are only allowed with hal_automotive_socket_exemption
+typeattribute hal_radar_default hal_automotive_socket_exemption;
+allow hal_radar_default device:dir { open read };
+allow hal_radar_default self:netlink_route_socket { create nlmsg_read nlmsg_readpriv read write };
+allow hal_radar_default node:udp_socket node_bind;
+allow hal_radar_default self:udp_socket { create bind read setopt write };
+allow hal_radar_default shell:binder call; # TODO remove?
+allow hal_radar_default shell:fd use;
+allow hal_radar_default shell:fifo_file write;
+allow hal_radar_default system_app:binder call; # TODO remove?
+allow hal_radar_default system_app:fd use; # TODO remove?
+allow hal_radar_default system_app:fifo_file write; # TODO remove?
+allow hal_radar_default usb_serial_device:chr_file { getattr ioctl open read write };

@@ -1,0 +1,9 @@
+# allow binder connection from client to server and back
+binder_call(hal_radar_client, hal_radar_server)
+binder_call(hal_radar_server, hal_radar_client)
+
+# allow client to find the service, allow server to register the service
+hal_attribute_service(hal_radar, hal_radar_service)
+
+# allow binder communication from server to service_manager
+binder_use(hal_radar_server)
