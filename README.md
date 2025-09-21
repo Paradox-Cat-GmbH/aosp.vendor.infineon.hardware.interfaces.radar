@@ -28,9 +28,9 @@ Refer to https://github.com/Paradox-Cat-GmbH/aosp.local-manifests.paradoxcat-inf
 You do not have to flash the whole vendor image every time you change the HAL service. It is enough to:
 
 ```bash
-m vendor.infineon.radar@1.0-service
-adb sync vendor
-adb shell killall vendor.infineon.radar@1.0-service
+$ m vendor.infineon.radar@1.0-service
+$ adb sync vendor
+$ adb shell killall vendor.infineon.radar@1.0-service
 ```
 
 The HAL should restart.
@@ -40,17 +40,17 @@ The HAL should restart.
 Make sure target device is discoverable via `adb devices`, then execute this:
 
 ```bash
-atest VtsHalRadarTest
+$ atest VtsHalRadarTest
 ```
 
 NOTE: this does not always work via wireless `adb` (device can not be re-attached). When testing with sensor connected to USB, execute it manually instead:
 
 ```bash
-adb connect IP:PORT
-adb root # it will lose connection and hang. Simply Ctrl+C it and reconnect to new port
-adb remount
-adb sync data
-adb shell /data/nativetest64/VtsHalRadarTest/VtsHalRadarTest
+$ adb connect IP:PORT
+$ adb root # it will lose connection and hang. Simply Ctrl+C it and reconnect to new port
+$ adb remount
+$ adb sync data
+$ adb shell /data/nativetest64/VtsHalRadarTest/VtsHalRadarTest
 ```
 
 NOTE: currently VTS tests stdour and strerr are redirected to logcat. It is easier to debug that way because one sees HAL logs interlaced with VTS logs.
