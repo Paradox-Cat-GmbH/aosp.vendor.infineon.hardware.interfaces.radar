@@ -43,7 +43,7 @@ Make sure target device is discoverable via `adb devices`, then execute this:
 $ atest VtsHalRadarTest
 ```
 
-NOTE: this does not always work via wireless `adb` (device can not be re-attached). When testing with sensor connected to USB, execute it manually instead:
+NOTE: this does not always work via wireless `adb` (device cannot be re-attached). When testing with sensor connected to USB, execute it manually instead:
 
 ```bash
 $ adb connect IP:PORT
@@ -53,4 +53,4 @@ $ adb sync data
 $ adb shell /data/nativetest64/VtsHalRadarTest/VtsHalRadarTest
 ```
 
-NOTE: currently VTS tests stdour and strerr are redirected to logcat. It is easier to debug that way because one sees HAL logs interlaced with VTS logs.
+NOTE: currently VTS tests stdout and stderr are redirected to logcat. It is easier to debug that way because one sees HAL logs interlaced with VTS logs.
