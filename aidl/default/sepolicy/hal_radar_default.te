@@ -20,6 +20,9 @@ binder_use(platform_app)
 binder_call(shell, hal_radar_default)
 binder_call(platform_app, hal_radar_default)
 
+# make platform_app a hal client for radar service
+hal_client_domain(platform_app, hal_radar)
+
 # udp_socket and raw sockets are only allowed with hal_automotive_socket_exemption
 typeattribute hal_radar_default hal_automotive_socket_exemption;
 allow hal_radar_default platform_app:binder call;
@@ -34,4 +37,4 @@ allow hal_radar_default shell:fd use;
 allow hal_radar_default shell:fifo_file write;
 allow hal_radar_default usb_serial_device:chr_file { getattr ioctl open read write };
 allow platform_app hal_radar_default:binder { call transfer };
-allow platform_app hal_radar_service:service_manager find;
+allow platform_app hal_radar_service:service_manager find; # possibly redundant, should be handled by hal_client_domain()
